@@ -126,6 +126,14 @@ class Mailgun implements HandlerInterface
     /**
      * @return string|null
      */
+    public function getParentMessageId()
+    {
+        return array_key_exists('In-Reply-To', $this->parsedBody) ? $this->parsedBody['In-Reply-To'] : null;
+    }
+
+    /**
+     * @return string|null
+     */
     public function getMimeVersion()
     {
         return array_key_exists('Mime-Version', $this->parsedBody) ? $this->parsedBody['Mime-Version'] : null;
@@ -218,5 +226,14 @@ class Mailgun implements HandlerInterface
     {
         return array_key_exists('stripped-signature',
             $this->parsedBody) ? $this->parsedBody['stripped-signature'] : null;
+    }
+
+    /**
+     * @param $key
+     * @return mixed|null
+     */
+    public function getValue($key)
+    {
+        return array_key_exists($key, $this->parsedBody) ? $this->parsedBody[$key] : null;
     }
 }

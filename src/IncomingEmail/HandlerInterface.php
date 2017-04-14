@@ -79,6 +79,11 @@ interface HandlerInterface
     public function getMessageId();
 
     /**
+     * @return string
+     */
+    public function getParentMessageId();
+
+    /**
      * @return string|null
      */
     public function getMimeVersion();
@@ -137,4 +142,10 @@ interface HandlerInterface
      * @return string|null
      */
     public function getSignatureStripped();
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function getValue($key);
 }

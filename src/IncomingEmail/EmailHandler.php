@@ -55,7 +55,11 @@ class EmailHandler
      */
     public function getReturnPath()
     {
-        return $this->handler->getReturnPath();
+        if ($this->handler->getReturnPath()) {
+            return $this->handler->getReturnPath();
+        }
+
+        return $this->handler->getFrom();
     }
 
     /**
@@ -112,6 +116,14 @@ class EmailHandler
     public function getMessageId()
     {
         return $this->handler->getMessageId();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getParentMessageId()
+    {
+        return $this->handler->getParentMessageId();
     }
 
     /**
@@ -208,5 +220,34 @@ class EmailHandler
     public function getSignatureStripped()
     {
         return $this->handler->getSignatureStripped();
+    }
+
+    /**
+     * @return bool
+     */
+    public function isReply()
+    {
+        if (!empty($this->handler->getParentMessageId())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isFirstTime()
+    {
+        return $this->isReply() === false ? true : false;
+    }
+
+    /**
+     * @param $key
+     * @return mixed
+     */
+    public function getValue($key)
+    {
+        return $this->handler->getValue($key);
     }
 }
