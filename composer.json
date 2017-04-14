@@ -1,0 +1,21 @@
+{
+    "name": "previewtechs/email-utility",
+    "description": "Email Utility PHP library to handle and work with email stuff",
+    "type": "library",
+    "require": {
+        "php": ">=5.5",
+        "psr/http-message": "^1.0"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Shaharia Azam",
+            "email": "shaharia.azam@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Previewtechs\\EmailUtility\\": "src"
+        }
+    }
+}
